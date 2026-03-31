@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Naina — Simple order</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm"
+        }
+      }
+    </script>
+    <script src="/js/supabase-config.js"></script>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        color: #2d4a3e;
+      }
+      body {
+        max-width: 28rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+        font-size: 0.9rem;
+      }
+      input,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.65rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font: inherit;
+      }
+      textarea {
+        min-height: 6rem;
+        resize: vertical;
+      }
+      button[type="submit"] {
+        width: 100%;
+        padding: 0.85rem;
+        background: #d4705c;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      button[type="submit"]:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .simple-order-msg {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+      }
+      .simple-order-msg--success {
+        background: #e8f5e9;
+        color: #1b5e20;
+      }
+      .simple-order-msg--error {
+        background: #ffebee;
+        color: #b71c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Place an order</h1>
+    <form id="simple-order-form" novalidate>
+      <label for="so-name">Name</label>
+      <input id="so-name" name="name" type="text" autocomplete="name" required />
+
+      <label for="so-phone">Phone</label>
+      <input id="so-phone" name="phone" type="tel" autocomplete="tel" required />
+
+      <label for="so-details">Order details</label>
+      <textarea
+        id="so-details"
+        name="order_details"
+        required
+        placeholder="Items, quantities, notes — or paste JSON"
+      ></textarea>
+
+      <button type="submit">Submit order</button>
+    </form>
+    <div id="simple-order-message" class="simple-order-msg" role="status" aria-live="polite" hidden></div>
+
+    <script type="module">
+      import { mountSimpleOrderForm } from "/js/simple-order-form.js";
+      mountSimpleOrderForm();
+    </script>
+  </body>
+</html>
