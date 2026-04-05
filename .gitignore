@@ -6,3 +6,7 @@ site.html
 .env.*
 !.env.example
 .netlify/
+
+# Local duplicate copies of this project (do not commit)
+landing-page/
+landing-page-1/
